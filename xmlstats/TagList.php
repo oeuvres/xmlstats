@@ -222,7 +222,7 @@ class TagList {
     else {
       $display[]= "\n<p> </p>\n<div>".$caption . "</div>";
       $display[]='
-<table class="sortable">
+<table class="sortable" align="center">
   <tr>
     <th title="Nom de l’élément">balise</th>
     <th title="Nombre d’éléments de ce nom">effectif (n)</th>
