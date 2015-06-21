@@ -19,8 +19,7 @@ session_cache_limiter(false); // important to get correct cache headers
 session_start();
 
 // Put some conf
-if(file_exists($file=dirname(__FILE__).'fr.stop')) xmlstats::$stopList['Français, mots vides']=realpath($file);
-if(file_exists($file=dirname(__FILE__).'/../la/la.stop')) xmlstats::$stopList['Latin, mots vides']=realpath($file);
+if(file_exists($file=dirname(__FILE__).'/fr.stop')) xmlstats::$stoplist['Français, mots vides']=realpath($file);
 if(file_exists(dirname(__FILE__).'/conf.php')) include_once(dirname(__FILE__).'/conf.php');
 
 include dirname(__FILE__).'/TagList.php';
@@ -34,7 +33,7 @@ class xmlstats {
   /** Set of xml files to propose */
   static public $glob=array();
   /** Set of stopWords */
-  static public $stopList=array();
+  static public $stoplist=array();
   /** TimeStamp of corpus */
   static public $lastModified=0;
   /** A cache dir, for corpus or session */
@@ -105,8 +104,8 @@ class xmlstats {
 
     // load a stop list
     $exclude=null;
-    if (isset($_REQUEST['stop']) && isset(xmlstats::$stopList[$_REQUEST['stop']])) {
-      $file=xmlstats::$stopList[$_REQUEST['stop']];
+    if (isset($_REQUEST['stop']) && isset(xmlstats::$stoplist[$_REQUEST['stop']])) {
+      $file=xmlstats::$stoplist[$_REQUEST['stop']];
       $exclude=explode("\n", preg_replace('/#.*/','',file_get_contents($file)));
       $exclude=array_flip($exclude);
       unset($exclude['']);
@@ -169,7 +168,6 @@ class xmlstats {
       else include $cacheFile;
     }
     else if (isset($_REQUEST['taglist'])) {
-      echo "<p>Liste des balises au format : $format</p>";
       $stats=new TagList($format);
       foreach($_SESSION['xml'] as $name=>$file){
         if ($format == "html") echo "\n<!-- ",basename($file)," -->";
@@ -205,7 +203,7 @@ class xmlstats {
     // déjouer les magic quotes
     if (get_magic_quotes_gpc()) $xpath=stripslashes($xpath);
     $corpus=(isset($_REQUEST['corpus'])) ? $_REQUEST['corpus'] : '';
-    $stop=(isset($_REQUEST['stop'])) ? $_REQUEST['stop'] : '';
+
     echo '
     <p/>
     <form method="GET" name="taglist">
@@ -217,13 +215,13 @@ class xmlstats {
       <label>Expression Xpath <input type="text" size="0" name="xpath" value="' , $xpath , '"/></label>';
 
     $stop=(isset($_REQUEST['stop'])) ? $_REQUEST['stop'] : null;
-    if (count(xmlstats::$stopList)) {
+    if (count(xmlstats::$stoplist)) {
       echo '
 <label> – Filtre
   <select name="stop">
     <option></option>
 ';
-    foreach (xmlstats::$stopList as $name=>$file) {
+    foreach (xmlstats::$stoplist as $name=>$file) {
       echo "\n<option";
       if ($stop == $name) echo ' selected="selected"';
       echo ">$name</option>";
@@ -259,8 +257,6 @@ class xmlstats {
    */
   static function formFile() {
     print '
-<p>Analyser le contenu d’un document XML (balises, texte, mots)</p>
-
 <form enctype="multipart/form-data" method="POST" name="upload" id="upload">
   <label>Fichiers XML en session <input type="file" size="50" name="xml" id="file_xml" onchange="this.form.submit()"/></label>
   <input name="ajouter" type="submit" value="Ajouter"/>

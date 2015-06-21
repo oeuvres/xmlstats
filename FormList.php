@@ -259,7 +259,7 @@ class FormList {
       print'
   <thead>
     <tr>
-      <th>forme</th>
+      <th>graphie</th>
       <th>effectif</th>
     </tr>
   </thead>
