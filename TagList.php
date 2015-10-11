@@ -1,10 +1,9 @@
 <?php
 /**
 
-© 2012, 2015 Frederic.Glorieux@fictif.org,
-<a href="http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html">licence CeCILL-C</a>
-(LGPL compatible droit français)
-
+Licence LGPL  http://www.gnu.org/licenses/lgpl.html
+© 2010 Frederic.Glorieux@fictif.org et École nationale des chartes
+© 2012 Frederic.Glorieux@fictif.org 
 
  */
 if (php_sapi_name() == "cli") {

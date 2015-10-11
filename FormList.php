@@ -1,13 +1,9 @@
 <?php
 /**
 
-© 2012, <a href="http://algone.net/">Algone</a>,
-<a href="http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html">licence CeCILL-C</a>
-(LGPL compatible droit français)
-
-<ul>
-  <li>2012 [FG] <a onclick="this.href='mailto'+'\x3A'+'frederic.glorieux'+'\x40'+'algone.net'">Frédéric Glorieux</a></li>
-</ul>
+Licence LGPL  http://www.gnu.org/licenses/lgpl.html
+© 2010 Frederic.Glorieux@fictif.org et École nationale des chartes
+© 2012 Frederic.Glorieux@fictif.org 
 
 
  */
