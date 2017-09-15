@@ -379,8 +379,7 @@ else {
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Statistiques XML</title>
-    <link rel="stylesheet" type="text/css" href="http://svn.code.sf.net/p/obvil/code/dynhum/html.css" />
-    <link rel="stylesheet" type="text/css" href="http://svn.code.sf.net/p/obvil/code/theme/obvil.css" />
+    <link rel="stylesheet" type="text/css" href="http://obvil.github.io/theme/obvil.css" />
   </head>
   <body>
     <div id="center">
@@ -388,7 +387,6 @@ else {
         <h1>
           <a href="../">Développements</a>
         </h1>
-        <a class="logo" href="http://obvil.paris-sorbonne.fr/developpements/"><img class="logo" src="http://svn.code.sf.net/p/obvil/code/theme/img/logo-obvil.png" alt="OBVIL"></a>
       </header>
       <div id="contenu">
         <h1><a href=".">XML stats</a></h1>
