@@ -70,6 +70,7 @@ class TagList
 
 
         $fp = fopen($xmlFile, "r");
+        // file bigger than 10Mb send an error  
         while($xml = fread($fp, 1024*1024*5))
         {
             $this->bytes += strlen($xml);
