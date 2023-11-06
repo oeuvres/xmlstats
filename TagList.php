@@ -210,16 +210,16 @@ class TagList
         arsort($this->attMap);
         $display = array();
         $caption = 'poids : ' . TagList::sizeH($this->bytes) .
-            'o – caractères : ' . number_format($this->chars, 0, ',', ' ') .
+            'o – signes : ' . number_format($this->chars, 0, ',', ' ') .
             ' – documents : ' . $this->docs .
             //    ' ; document moyen (octets) = ' . number_format($this->bytes / $this->docs, 0, null, " ") .
-            ' – segment moyen : ' . @number_format($this->chars / $this->events, 1, ',', ' ') . ' caractères' .
+            ' – segment moyen : ' . @number_format($this->chars / $this->events, 1, ',', ' ') . ' signes' .
             ' – poids des balises : ' . @round(100 - 100 * $this->textBytes / $this->bytes) . '%' .
             '.';
 
         if ($format == "txt" || $format == 'csv') {
             $display[] = $caption;
-            $display[] = "\n   balise                      | effectif   | caractères  | % texte     | tx. moy. c. | segmentation ";
+            $display[] = "\n   balise                      | effectif   | signes      | % texte     | tx. moy. s.| segmentation ";
             foreach ($this->tagMap as $name => $n) {
                 $name = '<' . $name . '>';
                 $name = @str_repeat(" ", 30 - mb_strlen($name, "UTF-8")) . $name;
@@ -230,7 +230,7 @@ class TagList
                     . ' | ' . str_pad(number_format($n['chars'] / $n['count'], 0, null, " "), 10, " ", STR_PAD_LEFT)
                     . ' | ' . str_pad(@round($n['chars'] / $n['events']), 10, " ", STR_PAD_LEFT);
             }
-            $display[] = "\n   attribut                    | nombre     | caractères      | moyenne";
+            $display[] = "\n   attribut                    | nombre     | signes      | moyenne";
             foreach ($this->attMap as $name => $n) {
                 $name = '@' . $name;
                 $name = @str_repeat(" ", 30 - mb_strlen($name, "UTF-8")) . $name;
@@ -247,10 +247,10 @@ class TagList
   <tr>
     <th title="Nom de l’élément">balise</th>
     <th title="Nombre d’éléments de ce nom">effectif (n)</th>
-    <th title="Texte total dans la balise, en nombre de caractères">texte (c)</th>
+    <th title="Texte total dans la balise, en nombre de signes">texte (c)</th>
     <th title="Par du texte de ce document à l’intérieur de cette balise">part du texte</th>
-    <th title="Nombre moyen de caractères par balise">c / n</th>
-    <th title="Taille moyenne d’un segment de texte sans interruption, en caractères">segmentation</th>
+    <th title="Nombre moyen de signes par balise">c / n</th>
+    <th title="Taille moyenne d’un segment de texte sans interruption, en signes">segmentation</th>
   </tr>
       ';
             foreach ($this->tagMap as $name => $n) {
@@ -274,7 +274,7 @@ class TagList
     <tr>
       <th>attribut</th>
       <th>effectif</th>
-      <th>caractères</th>
+      <th>signes</th>
       <th>moyenne</th>
     </tr>
         ';
@@ -334,7 +334,7 @@ class TagList
     <dt>Segment moyen</dt>
     <dd>
     Taille moyenne d’un noeud texte. Pour la typographie,
-    il s’agirait du nombre moyen de caractères sans changer de casier (italique, gras, tailles…).
+    il s’agirait du nombre moyen de signes sans changer de casier (italique, gras, tailles…).
     Au temps des automates de photocompoisition, ce serait le texte entre deux commandes (démarrer italique,
     arrêter italique, démarrer gras…).
     Pour un texte balisé, cet indice peut être significatif de la complexité du document.
